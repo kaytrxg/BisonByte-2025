@@ -1,11 +1,19 @@
 Accountability bodies (matching people based off culture practices. If someone from an African country that has a high spce diet can match with someone from an Asian country that both have risk for ulcers and GERD)
-AI tracks symptoms and vital signs and helps them match with potential diseases they might be having with 
+AI tracks symptoms and vital signs and helps them match with potential diseases they might be having and they can go over them with their doctor in their next appointment
+Allows them to make schedules with their doctor
+Collects information from their fitbit, apple watch, smartphone, etc. 
+Allows them manually input information their tracker can't record (e.g. weight, SpO2, etc.)
+
 
 Temperature 97.1-99.1
-Blood pressure 
-O2 Sat 
-Respiratory rate
-Pulse 
+Blood pressure 110-120/70-80
+O2 Sat >95%
+Respiratory rate 12-20bpm
+Pulse 70-100bpm
+Glucose <100 fasting
+Body weight
+
+
 Activity level
 Calories burned
 Stress level
