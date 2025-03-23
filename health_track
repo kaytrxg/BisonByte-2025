@@ -4,7 +4,6 @@ Allows them to make schedules with their doctor
 Collects information from their fitbit, apple watch, smartphone, etc. 
 Allows them manually input information their tracker can't record (e.g. weight, SpO2, etc.)
 
-
 Temperature 97.1-99.1
 Blood pressure 110-120/70-80
 O2 Sat >95%
@@ -12,12 +11,24 @@ Respiratory rate 12-20bpm
 Pulse 70-100bpm
 Glucose <100 fasting
 Body weight
-
-
 Activity level
 Calories burned
 Stress level
-
-
 Past Medical History
 Family History
+
+
+## Inspiration: A lot of patients have rebounds in the hospital due to their chronic conditions because they don't keep up to date with their vital sign and symptom progressions, dificulty keeping up with their health or diffiulty reaching their healthcare provider. Medilink allows patients to 
+
+## What it does: It allows patient's link their wearables (e.g. apple watches, fitbit, etc.) to their portal which iis also linked to their providers profile, allowing their proivder to have access to their at home daily vitals, recent distress signals, etc.
+Patient's can send messages to their provider preceeding their next checkup allowing the provider to have accurate and immediate records of their symptoms. Patients can link up with other patients with the same conditions or symptoms as them and similar backgrounds so they can have anonymous accountability partners
+
+## How we built it: My teammates and I made a Figma demo showing how the website would work after the data has been linked. We also wrote code to show the  
+
+## Challenges we ran into: We 
+
+## Accomplishments that we're proud of
+
+## What we learned
+
+## What's next for Medilink
