@@ -83,6 +83,69 @@
         </tbody>
     </table>
 
+    <div id="doctorForm" style="display:none; margin-top: 20px;">
+        <h2>Enter Symptom Information</h2>
+        <form id="symptomForm">
+            <label for="symptom">Symptom:</label>
+            <input type="text" id="symptom" required><br><br>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" required><br><br>
+
+            <label for="severity">Severity (1-10):</label>
+            <input type="number" id="severity" min="1" max="10" required><br><br>
+
+            <button type="button" onclick="addSymptomData()">Add Symptom</button>
+        </form>
+    </div>
+
+    <!-- Table to display the symptom data -->
+    <h2 id="symptomTableHeading" style="display:none;">Symptom Data Table</h2>
+    <table id="symptomTable">
+        <thead>
+            <tr>
+                <th>Symptom</th>
+                    <p> Headache </p>
+                <th>Description</th>
+                    <p>     </p> <!-- Add here -->
+                <th>Severity</th>
+                    <p>     </p>
+            </tr>
+            <tr>
+                <th>Symptom</th>
+                    <p> Shortness of Breathe </p>
+                <th>Description</th> <!-- Add here -->
+                    <p>     </p>
+                <th>Severity</th>
+                    <p>     </p>
+            </tr>
+            <tr>
+                <th>Symptom</th>
+                    <p> Racing Heart </p>
+                <th>Description</th> <!-- Add here -->
+                    <p>     </p>
+                <th>Severity</th>
+                    <p>     </p>
+            </tr>
+            <tr>
+                <th>Symptom</th>
+                    <p> Fatique </p>
+                <th>Description</th>
+                    <p>     </p> <!-- Add here -->
+                <th>Severity</th>
+                    <p>     </p>
+            </tr>
+            <tr>
+                <th>Symptom</th>
+                    <p> Extreme Thirst  </p>
+                <th>Description</th>
+                    <p>     </p> <!-- Add here -->
+                <th>Severity</th>
+                    <p>     </p>
+            </tr>
+        </thead>
+        <tbody>
+
     <script>
         // Function to show the doctor form and table
         function showDoctorForm() {
