@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #FFFFFF; /* now white */
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            display: none; /* Initially hidden */
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #F9D5FF;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 8px;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #F9D5FF;
+            color: rgb(0, 0, 0);
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            padding: 10px 15px;
+            background-color: #D86DE8;
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="C:\Users\itune\OneDrive\Desktop\School\BISON BYTES\LOGO.webp" alt="Logo image" width="300" height="auto" />
+
+
+    <h1>Select Your Role</h1>
+
+    <!-- Buttons to select role -->
+    <button onclick="showDoctorForm()">DOCTOR</button>
+    <button onclick="hideTable()">PATIENT</button> <!-- Clicking this will hide the table -->
+
+    <!-- Form to input user data (will only show when DOCTOR is clicked) -->
+    <div id="doctorForm" style="display:none; margin-top: 20px;">
+        <h2>Enter User Information</h2>
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" required><br><br>
+
+            <label for="height">Height (in cm):</label>
+            <input type="number" id="height" required><br><br>
+
+            <button type="button" onclick="addUserData()">Add Data</button>
+        </form>
+    </div>
+
+    <!-- Table to display the user data -->
+    <h2>User Data Table</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Height (cm)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to show the doctor form and table
+        function showDoctorForm() {
+            // Show the form and table
+            document.getElementById('doctorForm').style.display = 'block';
+            document.getElementById('userTable').style.display = 'table';
+        }
+
+        // Function to add data to the table
+        function addUserData() {
+            // Get user input values
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const height = document.getElementById('height').value;
+
+            // Check if all fields are filled
+            if (name && age && height) {
+                // Create a new row
+                const table = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow();
+
+                // Insert cells and add data to each cell
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+
+                cell1.textContent = name;
+                cell2.textContent = age;
+                cell3.textContent = height;
+
+                // Clear the form fields after adding data
+                document.getElementById('userForm').reset();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+
+        // Function to hide the table (and also the form)
+        function hideTable() {
+            // Hide the user table by setting display to none
+            document.getElementById('userTable').style.display = 'none';
+            document.getElementById('doctorForm').style.display = 'none'; // Hide the form as well
+        }
+    </script>
+
+</body>
+</html>
