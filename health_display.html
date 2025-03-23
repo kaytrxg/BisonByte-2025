@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
+            background-color: #FFFFFF; /* now white */
         }
         table {
             width: 50%;
@@ -17,14 +18,14 @@
             display: none; /* Initially hidden */
         }
         table, th, td {
-            border: 1px solid #ddd; <!-- changing sizes/colors-->
+            border: 1px solid #000;
         }
         th, td {
             padding: 10px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2; <!-- changing colors-->
+            background-color: #F9D5FF;
         }
         input[type="text"], input[type="number"] {
             padding: 8px;
@@ -33,13 +34,17 @@
         }
         button {
             padding: 10px 15px;
-            background-color: #4CAF50; <!-- changing colors-->
-            color: white;
-            border: none; <!-- changing borders-->
+            background-color: #F9D5FF;
+            color: rgb(0, 0, 0);
+            border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049; <!-- changing colors-->
+            padding: 10px 15px;
+            background-color: #D86DE8;
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -52,7 +57,7 @@
     <button onclick="hideTable()">PATIENT</button> <!-- Clicking this will hide the table -->
 
     <!-- Form to input user data (will only show when DOCTOR is clicked) -->
-    <div id="doctorForm" style="display:none; margin-top: 20px;">
+    <div id="patientForm" style="display:none; margin-top: 20px;"> <!--changed -->
         <h2>Enter User Information</h2>
         <form id="userForm">
             <label for="name">Name:</label>
@@ -61,21 +66,22 @@
             <label for="age">Age:</label>
             <input type="number" id="age" required><br><br>
 
-            <label for="height">Height (in cm):</label>
-            <input type="number" id="height" required><br><br>
+            <label for = "goodOrBad"> GOOD or BAD today?: </label>
+            <input type = "text" id = "feeling" required><br><br>
 
             <button type="button" onclick="addUserData()">Add Data</button>
         </form>
     </div>
 
     <!-- Table to display the user data -->
-    <h2>User Data Table</h2>
+    
+    <h2 id="userTableHeading" style="display:none;">User Data Table</h2>
     <table id="userTable">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Age</th>
-                <th>Height (cm)</th>
+                <th>Good or Bad</th>
             </tr>
         </thead>
         <tbody>
@@ -83,17 +89,18 @@
         </tbody>
     </table>
 
-    <div id="doctorForm" style="display:none; margin-top: 20px;">
+    <div id="symptomForm" style="display:none; margin-top: 20px;"> <!-- changed-->
         <h2>Enter Symptom Information</h2>
-        <form id="symptomForm">
+        <p> *******This shows results for Headache, Shortness of Breath, Racing Heart, Fatigue, Extreme Thirst, as the symptoms************ </p>
+        <form id="symptomFormInputs">
             <label for="symptom">Symptom:</label>
             <input type="text" id="symptom" required><br><br>
 
             <label for="description">Description:</label>
             <input type="text" id="description" required><br><br>
 
-            <label for="severity">Onset:</label>
-            <input type="text" id="onset" required><br><br>
+            <label for="onset">Onset (DATE -> MM/DD/YYYY):</label>
+            <input type="text" id="onset" required><br><br> <!-- 12/31/2023-->
 
             <button type="button" onclick="addSymptomData()">Add Symptom</button>
         </form>
@@ -101,68 +108,48 @@
 
     <!-- Table to display the symptom data -->
     <h2 id="symptomTableHeading" style="display:none;">Symptom Data Table</h2>
-    <table id="symptomTable">
+    <table id="symptomTable" style="display:none;">
         <thead>
             <tr>
                 <th>Symptom</th>
-                    <p> Headache </p>
                 <th>Description</th>
-                    <p> I have a throbbing headache at the back of my head </p> <!-- Add here -->
                 <th>Onset</th>
-                    <p> 2 days ago </p>
-            </tr>
-            <tr>
-                <th>Symptom</th>
-                    <p> Shortness of Breathe </p>
-                <th>Description</th> <!-- Add here -->
-                    <p> Everytime I lay down to sleep, I feel like I can't breath and I have to sit up to sleep </p>
-                <th>Onset</th>
-                    <p> 2 weeks ago </p>
-            </tr>
-            <tr>
-                <th>Symptom</th>
-                    <p> Racing Heart </p>
-                <th>Description</th> <!-- Add here -->
-                    <p> My chest feels like it's about to burst out of my chest, and I feel like I'm going to fall everytime I stand up </p>
-                <th>Onset</th>
-                    <p> A week ago </p>
-            </tr>
-            <tr>
-                <th>Symptom</th>
-                    <p> Fatigue </p>
-                <th>Description</th>
-                    <p> I feel like my whole body has been weighing me down and I can't do as many things as I used to without needing to stop for a break </p> <!-- Add here -->
-                <th>Onset</th>
-                    <p> 3 weeks ago </p>
-            </tr>
-            <tr>
-                <th>Symptom</th>
-                    <p> Extreme Thirst  </p>
-                <th>Description</th>
-                    <p> I don't know why, but I feel like I've been really thirsty recently. I've been drinking at least 8 bottles of water a day </p> <!-- Add here -->
-                <th>Onset</th>
-                    <p> 3 days </p>
             </tr>
         </thead>
         <tbody>
+            <!-- Rows will be added here dynamically -->
+        </tbody>
+    </table>
 
     <script>
         // Function to show the doctor form and table
         function showDoctorForm() {
-            // Show the form and table
-            document.getElementById('doctorForm').style.display = 'block';
-            document.getElementById('userTable').style.display = 'table';
+            // Show the form and table for the doctor
+            document.getElementById('patientForm').style.display = 'none'; // Hide patient form
+            document.getElementById('userTableHeading').style.display = 'block'; // Show user data table heading
+            document.getElementById('userTable').style.display = 'table'; // Show user data table
+            document.getElementById('symptomTableHeading').style.display = 'block'; // Hide symptom table heading initially
+            document.getElementById('symptomTable').style.display = 'table'; // Hide symptom table initially
         }
 
-        // Function to add data to the table
+        // Function to hide the table and show the patient form
+        function hideTable() {
+            document.getElementById('patientForm').style.display = 'block'; // Show patient form
+            document.getElementById('userTableHeading').style.display = 'none'; // Hide user data table heading
+            document.getElementById('userTable').style.display = 'none'; // Hide user data table
+            document.getElementById('symptomTableHeading').style.display = 'none'; // Hide symptom table heading
+            document.getElementById('symptomTable').style.display = 'none'; // Hide symptom table
+        }
+
+        // Function to add user data to the table
         function addUserData() {
             // Get user input values
             const name = document.getElementById('name').value;
             const age = document.getElementById('age').value;
-            const height = document.getElementById('height').value;
+            const feeling = document.getElementById('feeling').value;
 
             // Check if all fields are filled
-            if (name && age && height) {
+            if (name && age && feeling) {
                 // Create a new row
                 const table = document.getElementById('userTable').getElementsByTagName('tbody')[0];
                 const newRow = table.insertRow();
@@ -174,21 +161,51 @@
 
                 cell1.textContent = name;
                 cell2.textContent = age;
-                cell3.textContent = height;
+                cell3.textContent = feeling;
 
                 // Clear the form fields after adding data
                 document.getElementById('userForm').reset();
+                if (feeling.toLowerCase() === 'bad') {
+                    document.getElementById('symptomForm').style.display = 'block'; // Show symptom form
+                    document.getElementById('patientForm').style.display = 'none'; // Hide user form
+                }
             } else {
                 alert('Please fill out all fields.');
             }
         }
+        function addSymptomData() {
+            const symptom = document.getElementById('symptom').value;
+            const description = document.getElementById('description').value;
+            const onset = document.getElementById('onset').value;
 
-        // Function to hide the table (and also the form)
-        function hideTable() {
-            // Hide the user table by setting display to none
-            document.getElementById('userTable').style.display = 'none';
-            document.getElementById('doctorForm').style.display = 'none'; // Hide the form as well
-        }
+            if (symptom && description && onset) {
+                const table = document.getElementById('symptomTable').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow();
+
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+
+                cell1.textContent = symptom;
+                cell2.textContent = description;
+                cell3.textContent = onset;
+
+                document.getElementById('symptomFormInputs').reset(); // Reset the symptom form
+
+                // Show sympt
+
+                // After adding symptom data, reset for the next user entry
+                document.getElementById('patientForm').style.display = 'block'; // Show patient form again
+                document.getElementById('userTable').style.display = 'none'; // Hide user data table
+                document.getElementById('userTableHeading').style.display = 'none'; // Hide table heading
+
+                // Hide the symptom form and reset for next user entry
+                document.getElementById('symptomForm').style.display = 'none'; // Hide symptom form
+            } else {
+                alert('Please fill out all symptom fields.');
+            }
+            document.getElementById('symptomForm').style.display = 'none'; // Hide symptom form
+        }          
     </script>
 
 </body>
